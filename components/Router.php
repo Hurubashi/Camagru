@@ -31,14 +31,17 @@ class Router
     {
         // Get request string
         $uri = $this->getURI();
+        if ($uri == NULL) {
+            include_once(ROOT . "/views/Index.php");
+            return;
+        }
         // Check if routes.php have this request
-        print_r($uri);
+
         foreach ($this->routes as $uriPattern => $path) {
 
             // If it is, select corresponding controller and action
             // ALLERT!!!! This need to be fixed!
-            if (preg_match("~$uriPattern~", $uri)) {
-                echo "+";
+            if (preg_match("~^$uriPattern\b~", $uri)) {
 
                 $segments = explode('/', $path);
                 $controllerName = array_shift($segments) . 'Controller';
@@ -47,22 +50,24 @@ class Router
                 $actionName = 'action' . ucfirst(array_shift($segments));
                 echo '<br>Class: ' . $controllerName;
                 echo '<br>Method: ' . $actionName;
+
+
+                // Include file of controller class
+                $controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
+                if (file_exists($controllerFile)) {
+                    include_once($controllerFile);
+                }
+
+                // Create object, coll method (i.e. action)
+                $controllerObject = new $controllerName;
+                $result = $controllerObject->$actionName();
+                if ($result != null) {
+                    return;
+                }
             }
 
-            // Include file of controller class
-            $controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
-            if (file_exists($controllerFile)) {
-                include_once($controllerFile);
-            }
-
-            echo '<br>'.$controllerFile;
-            // Create object, coll method (i.e. action)
-            $controllerObject = new $controllerName;
-            $result = $controllerObject->$actionName();
-            if ($result != null) {
-                break;
-            }
         }
+        echo "404 page not found";
 
     }
 }
