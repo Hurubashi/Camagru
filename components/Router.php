@@ -36,7 +36,6 @@ class Router
             return;
         }
         // Check if routes.php have this request
-
         foreach ($this->routes as $uriPattern => $path) {
 
             // If it is, select corresponding controller and action
@@ -67,7 +66,8 @@ class Router
             }
 
         }
-        echo "404 page not found";
+        include_once(ROOT . "/views/404_page.html");
+        echo "PICHAL'KA!!!! 404 page not found ";
 
     }
 }

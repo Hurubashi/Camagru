@@ -6,8 +6,6 @@
  * Time: 16:02
  */
 
-//include($_SERVER["DOCUMENT_ROOT"]."/views/Index.php");
-//  php -S localhost:8000
 
 // 1. Basic settings
 
