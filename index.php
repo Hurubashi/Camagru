@@ -14,7 +14,7 @@ error_reporting(E_ALL);
 
 // 2. Connect system files
 define('ROOT', dirname(__FILE__));
-require_once(ROOT.'/components/Router.php');
+require_once(ROOT . '/router/Router.php');
 
 // 3. Connect DB
 

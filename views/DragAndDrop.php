@@ -17,6 +17,6 @@
 <div class="empty"></div>
 <div class="empty"></div>
 
-<script src="/views/main.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>

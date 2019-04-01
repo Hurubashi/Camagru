@@ -12,7 +12,7 @@ class Router
 
     public function __construct()
     {
-        $routesPath = ROOT.'/config/routes.php';
+        $routesPath = ROOT.'/router/routes.php';
         $this->routes = include($routesPath);
     }
 
@@ -38,7 +38,7 @@ class Router
         // Check if routes.php have this request
         foreach ($this->routes as $uriPattern => $path) {
             // If it is, select corresponding controller and action
-            if (preg_match("~^$uriPattern\b~", $uri)) {
+            if (preg_match("~^$uriPattern$~", $uri)) {
                 $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
 
                 $segments = explode('/', $internalRoute);
@@ -46,11 +46,6 @@ class Router
                 $controllerName = ucfirst($controllerName);
 
                 $actionName = 'action' . ucfirst(array_shift($segments));
-//                echo '<br>Class: ' . $controllerName;
-//                echo '<br>Method: ' . $actionName;
-//                echo "<br>";
-//                print_r($segments);
-
                 // Include file of controller class
                 $controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
                 if (file_exists($controllerFile)) {
@@ -59,7 +54,6 @@ class Router
                 // Create object, coll method (i.e. action)
                 $controllerObject = new $controllerName;
                 $result = $controllerObject->$actionName();
-//                $result = call_user_func_array(array($controllerObject, $actionName), $segments);
                 if ($result != null) {
                     return;
                 }
