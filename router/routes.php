@@ -8,5 +8,5 @@
 
 return array(
     'main' => 'main/index',
-    'drag' => 'drag/index'    // actionIndex in dragAndDrop
+    'drag' => 'drag/index'
 );
