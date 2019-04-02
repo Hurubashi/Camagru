@@ -5,7 +5,7 @@
     <title>Not found</title>
 </head>
 <body>
-<img src="/assets/404_page.png">
+<img src="/components/images/404_page.png">
 
 <p> Pichal'ka :(</p>
 </body>

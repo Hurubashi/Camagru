@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mrybak
- * Date: 17.03.2019
- * Time: 17:22
- */
 
 class Router
 {
@@ -28,9 +22,6 @@ class Router
         }
     }
 
-    /**
-     *
-     */
     public function run()
     {
         // Get request string
@@ -60,7 +51,7 @@ class Router
             }
 
         }
-        include_once(ROOT . "/views/404_page.html");
+        include_once(ROOT . "/views/ErrorPage404.php");
 
     }
 }

@@ -4,7 +4,7 @@ body {
 
 .fill {
     /*background-image: url('http://source.unsplash.com/random/150x150');*/
-    background-image: url('/assets/180.jpg');
+    background-image: url('/components/images/180.jpg');
     position: relative;
     height: 150px;
     width: 150px;

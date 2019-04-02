@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mrybak
- * Date: 17.03.2019
- * Time: 16:02
- */
-
 
 // 1. Basic settings
 
@@ -17,10 +10,10 @@ define('ROOT', dirname(__FILE__));
 require_once(ROOT . '/router/Router.php');
 
 // 3. Connect DB
-
+require_once(ROOT. '/config/connect_db.php');
+connect_db();
 
 // 4. Call Router
-
 $router = new Router();
 $router->run();
 
