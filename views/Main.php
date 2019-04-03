@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>Camera Page</title>
 </head>
 
@@ -37,6 +36,9 @@
 
 </script>
 
+<?php
+include_once 'DragAndDrop.php';
+?>
 </body>
 
 </html>

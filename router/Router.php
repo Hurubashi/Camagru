@@ -36,7 +36,7 @@ class Router
                 $controllerName = array_shift($segments) . 'Controller';
                 $controllerName = ucfirst($controllerName);
 
-                $actionName = 'action' . ucfirst(array_shift($segments));
+                $actionName = 'action' . array_shift($segments);
                 // Include file of controller class
                 $controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
                 if (file_exists($controllerFile)) {
@@ -51,8 +51,11 @@ class Router
             }
 
         }
-        include_once(ROOT . "/views/ErrorPage404.php");
 
+        // Page not found
+        include_once(ROOT . '/controllers/ErrorPageController.php');
+        $controllerObject2 = new ErrorPageController;
+        $controllerObject2->actionError404();
     }
 }
 

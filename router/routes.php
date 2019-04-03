@@ -8,5 +8,8 @@
 
 return array(
     'main' => 'main/index',
-    'drag' => 'drag/index'
+    'user/registration' => 'user/registration',
+    'user/congrat' => 'user/congrat',
+    'user/login' => 'user/login'
+
 );
