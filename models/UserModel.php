@@ -24,7 +24,13 @@ class UserModel extends Model
     }
 
     public function createUser($username, $email, $password, $rePassword) {
-        echo "Checking data $username , $email, $password, $rePassword";
+        echo "Checking data: $username , $email, $password, $rePassword";
+
+        $password = md5($password);
+        $pdo = connect_db();
+        $sql = "INSERT INTO 'user' (username, password, email) VALUES (?,?,?)";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$username, $password, $email]);
     }
 
 }

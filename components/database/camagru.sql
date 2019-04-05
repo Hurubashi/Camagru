@@ -31,15 +31,23 @@ USE `camagru`;
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(15) NOT NULL,
-  `login` char(15) NOT NULL,
-  `password` char(20) NOT NULL,
-  `email` char(30) NOT NULL,
-  `verified` tinyint(1) NOT NULL,
-  `token` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL auto_increment,
+  `username` varchar(50) NOT NULL default '',
+  `password` varchar(128) NOT NULL default '',
+  `email` varchar(250) NOT NULL default '',
+  `active` binary(1) NOT NULL default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `confirm` (
+  `id` int(11) NOT NULL auto_increment,
+  `userid` varchar(128) NOT NULL default '',
+  `key` varchar(128) NOT NULL default '',
+  `email` varchar(250) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
