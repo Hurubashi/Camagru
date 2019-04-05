@@ -11,12 +11,12 @@
     <div class="form">
     <form action="" method="post">
         <h2>Sign Up</h2>
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="text" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="rePassword" placeholder="Confirm password" required>
+        <input type="text" name="username" placeholder="Username" minlength="3" required>
+        <input type="text" name="email" placeholder="Email" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" required>
+        <input type="password" name="password" id="password" placeholder="Password" pattern="(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,15})$" required>
+        <input type="password" name="cPassword" id="cPassword" placeholder="Confirm password" pattern="(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,15})$" required>
         <br><br>
-        <a href=""><input type="submit" value="Sign Up"></a><br>
+        <a href=""><input type="submit" value="Sign Up" onclick="validatePassword();"></a><br>
         <br>
         <div id="container">
             <a href="#" style=" margin-right: 0px; font-size: 13px;
@@ -30,6 +30,23 @@
 
 </body>
 
+<script>
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("cPassword");
+
+    console.log(password.value);
+    console.log(confirm_password.value);
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
 
 </html>
 
@@ -38,7 +55,14 @@
 if ($_POST) {
     include_once (ROOT . '/models/UserModel.php');
     $userManager = new UserModel;
-    $userManager->createUser($_POST["username"], $_POST["email"], $_POST["password"], $_POST["rePassword"]);
+
+    $is_created = $userManager->createUser($_POST["username"], $_POST["email"],
+                                $_POST["password"], $_POST["cPassword"]);
+    if ($is_created) {
+        echo "Congrats!";
+    } else {
+        echo $is_created;
+    }
 }
 
 ?>

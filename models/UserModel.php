@@ -28,52 +28,25 @@ class UserModel extends Model
 
         $password = md5($password);
         $pdo = connect_db();
-        $sql = "INSERT INTO 'user' (username, password, email) VALUES (?,?,?)";
+        $sql = "INSERT INTO user(username, email, password, verification_key) 
+                VALUES (:username, :email, :password, :verif)";
         $stmt= $pdo->prepare($sql);
-        $stmt->execute([$username, $password, $email]);
+
+        $bytes = openssl_random_pseudo_bytes(32);
+        $hash = bin2hex($bytes);
+        $stmt->execute(['username' => $username, 'email' => $email, 'password' => $password, 'verif' => $hash]);
+
+        $this->send_email($email, $hash);
+    }
+
+    private function send_email($address, $link){
+//        ini_set("SMTP", "aspmx.l.google.com");
+//        ini_set("sendmail_from", "c@gmail.com");
+        $message = "Follow the link to confirm registration $link";
+        $headers = "From: yatrahal@ukr.net";
+
+        mail($address, "Registration at camagru", $message, $headers);
+        echo "Check your email now....<BR/>";
     }
 
 }
-
-//<?php
-//class Contact
-//{
-//    private $UploadedFiles = '';
-//    private $DbHost = DB_HOST;
-//    private $DbName = DB_NAME;
-//    private $DbUser = DB_USER;
-//    private $DbPass = DB_PASS;
-//    private $table;
-//
-//    function __construct()
-//    {
-//        $this->table = strtolower(get_class());
-//    }
-//
-//    public function insert($values = array())
-//    {
-//        $dbh = new PDO("mysql:host=$this->DbHost;dbname=$this->DbName", $this->DbUser, $this->DbPass, array(PDO::ATTR_PERSISTENT => true));
-//        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//        $dbh->exec("SET CHARACTER SET utf8");
-//
-//        foreach ($values as $field => $v)
-//            $ins[] = ':' . $field;
-//
-//        $ins = implode(',', $ins);
-//        $fields = implode(',', array_keys($values));
-//        $sql = "INSERT INTO $this->table ($fields) VALUES ($ins)";
-//
-//        $sth = $dbh->prepare($sql);
-//        foreach ($values as $f => $v)
-//        {
-//            $sth->bindValue(':' . $f, $v);
-//        }
-//        $sth->execute();
-//        //return $this->lastId = $dbh->lastInsertId();
-//    }
-//
-//}
-//
-//$contact = new Contact();
-//$values = array('col1'=>'value1','col2'=>'value2');
-//$contact->insert($values);

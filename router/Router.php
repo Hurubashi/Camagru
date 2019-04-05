@@ -29,10 +29,8 @@ class Router
         // Check if routes.php have this request
         foreach ($this->routes as $uriPattern => $path) {
             // If it is, select corresponding controller and action
-            if (preg_match("~^$uriPattern$~", $uri)) {
-                $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
-
-                $segments = explode('/', $internalRoute);
+            if (preg_match("~^$uriPattern($|\?)~", $uri)) {
+                $segments = explode('/', $path);
                 $controllerName = array_shift($segments) . 'Controller';
                 $controllerName = ucfirst($controllerName);
 
@@ -49,9 +47,7 @@ class Router
                     return;
                 }
             }
-
         }
-
         // Page not found
         include_once(ROOT . '/controllers/ErrorPageController.php');
         $controllerObject2 = new ErrorPageController;
