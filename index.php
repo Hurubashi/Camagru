@@ -11,8 +11,7 @@ require_once(ROOT . '/router/Router.php');
 
 // 3. Connect DB
 require_once(ROOT. '/config/connectDb.php');
-connect_db();
-
+new Database();
 // 4. Include core classes
 require_once 'core/Model.php';
 require_once 'core/View.php';

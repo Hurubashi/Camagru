@@ -1,17 +1,28 @@
 <?php
 
-function connect_db()
-{
-    require ROOT.'/config/database.php';
-    try {
-        $pdo =  new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $pdo;
-    }catch (PDOException $e)
+class Database {
+
+    // Global variable that returns PDO connection or FALSE if connection unavailable
+    public static $pdo;
+
+    public function __construct()
     {
-        echo $e->getMessage();
+        $this->initPDO();
     }
-    return false;
+
+    // Init global PDO value
+    public function initPDO() {
+        require ROOT.'/config/database.php';
+        try {
+            self::$pdo =  new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+            self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+        } catch (PDOException $e){
+            self::$pdo = false;
+            echo $e->getMessage();
+        }
+    }
+
 }
 
 ?>

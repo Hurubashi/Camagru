@@ -16,28 +16,34 @@
         <br><br>
         <a href=""><input type="submit" value="Log In"></a><br>
         <br>
-        <div id="container">
-            <a href="#" style=" margin-right: 0px; font-size: 13px;
-            font-family: Tahoma, Geneva, sans-serif;">Reset password</a>
-            <a href="#" style=" margin-right: 0px; font-size: 13px;
-            font-family: Tahoma, Geneva, sans-serif;">Forgot password</a>
-        </div>
         <br><br><br><br><br>
         Don't have account? <a href="registration">&nbsp;Sing Up</a>
+        <div id="msg"></div>
     </form>
 </div>
 
 </body>
 
-
+<script src="/components/js/infoMsg.js"></script>
 </html>
 
 <?php
 
+$result = NULL;
+
 if ($_POST) {
     include_once (ROOT . '/models/UserModel.php');
     $userManager = new UserModel;
-    $userManager->checkEnteredData($_POST["username"], $_POST["password"]);
+
+    $result = $userManager->checkEnteredData($_POST["username"], $_POST["password"]);
 }
 
 ?>
+
+<script>
+    var error = "<?php echo $result ?>";
+
+    if (error) {
+        message(error);
+    }
+</script>

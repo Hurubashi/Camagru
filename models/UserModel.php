@@ -20,33 +20,56 @@ class UserModel extends Model
     }
 
     public function checkEnteredData($username, $password) {
-        echo "Checking data $username , $password";
+        if (Database::$pdo == NULL) {
+            return false;
+        } else {
+            $sql = "SELECT * FROM user WHERE username = :username";
+            $stmt = Database::$pdo->prepare($sql);
+            $stmt->execute(['username' => $username]);
+            $user = $stmt->fetch();
+
+            if ($user == NULL) {
+                return "No such user";
+            }
+            $password = crypt($password, '$2a$07$YourSaltIsA22ChrString$');
+            if ($password == $user->password) {
+                return false;
+            } else {
+                return "Wrong password";
+            }
+        }
     }
 
-    public function createUser($username, $email, $password, $rePassword) {
-        echo "Checking data: $username , $email, $password, $rePassword";
+    public function createUser($username, $email, $password) {
 
-        $password = md5($password);
-        $pdo = connect_db();
-        $sql = "INSERT INTO user(username, email, password, verification_key) 
+        if (Database::$pdo == NULL) {
+            return false;
+        } else {
+            $password = crypt($password, '$2a$07$YourSaltIsA22ChrString$');
+            $sql = "INSERT INTO user(username, email, password, verification_key) 
                 VALUES (:username, :email, :password, :verif)";
-        $stmt= $pdo->prepare($sql);
+            $stmt= Database::$pdo->prepare($sql);
+            $bytes = openssl_random_pseudo_bytes(32);
+            $hash = bin2hex($bytes);
+            $result = $stmt->execute(['username' => $username, 'email' => $email, 'password' => $password, 'verif' => $hash]);
 
-        $bytes = openssl_random_pseudo_bytes(32);
-        $hash = bin2hex($bytes);
-        $stmt->execute(['username' => $username, 'email' => $email, 'password' => $password, 'verif' => $hash]);
-
-        $this->send_email($email, $hash);
+            if ($result) {
+                $this->send_email($email, $hash);
+                return true;
+            }
+        }
+        return false;
     }
 
     private function send_email($address, $link){
+//        Uncomment to setup your own SMTP server
 //        ini_set("SMTP", "aspmx.l.google.com");
 //        ini_set("sendmail_from", "c@gmail.com");
+
         $message = "Follow the link to confirm registration $link";
         $headers = "From: yatrahal@ukr.net";
 
         mail($address, "Registration at camagru", $message, $headers);
-        echo "Check your email now....<BR/>";
     }
 
 }

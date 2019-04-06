@@ -6,4 +6,5 @@ class ErrorPageController extends Controller
         $this->view->generate('error404.php', 'templateView.php');
         return true;
     }
+
 }

@@ -6,17 +6,19 @@
     <link href="/components/css/congrat.css" rel="stylesheet" type="text/css" />
 </head>
 
-<!--<body class="bodyLogin">-->
+<body class="bodyLogin">
 
 <div class="cong">
     <form>
-        <h2 style="color: white">Congratulations you Log In successfully!!!</h2>
+        <h2 style="color: white">
+
+        </h2>
         <a href="#" style="text-decoration: none">Go back to Home page</a>
         <br><br>
     </form>
 </div>
 
-<!--</body>-->
+</body>
 
 
 </html>
