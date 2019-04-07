@@ -37,7 +37,7 @@
 </script>
 
 <?php
-include_once 'DragAndDrop.php';
+include_once 'dragAndDrop.php';
 ?>
 </body>
 

@@ -36,7 +36,7 @@ if ($_POST) {
     include (ROOT . '/models/UserModel.php');
     $userManager = new UserModel;
 
-    $is_created = $userManager->createUser($_POST["username"], $_POST["email"], $_POST["password"]);
+    $is_created = $userManager->register($_POST["username"], $_POST["email"], $_POST["password"]);
     if ($is_created) {
         echo "<script> message(\"Congratulations you have sing up successfully!!!<br>Confirmation letter was sent to your email.\"); </script>";
     } else {

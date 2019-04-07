@@ -23,6 +23,14 @@ class Database {
         }
     }
 
+    public static function pdo_is_connected() {
+        if (Database::$pdo == NULL) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }
 
 ?>

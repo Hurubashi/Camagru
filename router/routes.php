@@ -9,7 +9,6 @@
 return array(
     'main' => 'main/index',
     'user/registration' => 'user/registration',
-    'user/congrat' => 'user/congrat',
+    'user/confirmation' => 'user/confirmation',
     'user/login' => 'user/login'
-
 );

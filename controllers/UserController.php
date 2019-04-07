@@ -10,8 +10,8 @@ class UserController extends Controller
         $this->view->generate('/user/registration.php', 'templateView.php');
     }
 
-    public function actionCongrat() {
-        $this->view->generate('/user/congrat.php', 'templateView.php');
+    public function actionConfirmation() {
+        $this->view->generate('/user/confirmation.php', 'templateView.php');
     }
 
 }

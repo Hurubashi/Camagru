@@ -35,15 +35,25 @@ if ($_POST) {
     include_once (ROOT . '/models/UserModel.php');
     $userManager = new UserModel;
 
-    $result = $userManager->checkEnteredData($_POST["username"], $_POST["password"]);
+    $error = $userManager->login($_POST["username"], $_POST["password"]);
+
+    if ($error == NULL) {
+        $url = 'http://'. $_SERVER['HTTP_HOST'];
+        header("Location: $url");
+    }
 }
 
 ?>
 
 <script>
-    var error = "<?php echo $result ?>";
+    var error = "<?php echo $error ?>";
 
     if (error) {
         message(error);
     }
 </script>
+
+id
+ownerId
+likes
+likers
