@@ -7,8 +7,10 @@
  */
 
 return array(
-    'main' => 'main/index',
-    'user/registration' => 'user/registration',
-    'user/confirmation' => 'user/confirmation',
-    'user/login' => 'user/login'
+    'main'                  => 'main/index',
+    'user/registration'     => 'user/registration',
+    'user/confirmation'     => 'user/confirmation',
+    'user/login'            => 'user/login',
+    'makePhoto'             => 'PhotoMaker/makePhoto',
+    'saveImg'               => 'PhotoMaker/saveImg'
 );

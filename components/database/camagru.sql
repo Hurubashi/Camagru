@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Апр 07 2019 г., 07:34
+-- Время создания: Апр 08 2019 г., 02:35
 -- Версия сервера: 5.7.25
 -- Версия PHP: 7.1.27
 
@@ -22,6 +22,9 @@ SET time_zone = "+00:00";
 -- База данных: `camagru`
 --
 
+CREATE DATABASE IF NOT EXISTS `camagru` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `camagru`;
+
 -- --------------------------------------------------------
 
 --
@@ -32,7 +35,23 @@ CREATE TABLE `photo` (
   `id` int(11) NOT NULL,
   `ownerId` int(11) NOT NULL,
   `likes` int(11) NOT NULL,
-  `comments` int(11) NOT NULL
+  `comments` int(11) NOT NULL,
+  `photoURL` char (255) NOT NULL,
+  `creationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `photo_comment`
+--
+
+CREATE TABLE `photo_comment` (
+  `id` int(11) NOT NULL,
+  `ownerId` int(11) NOT NULL,
+  `photoId` int(11) NOT NULL,
+  `text` text NOT NULL,
+  `creationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -42,8 +61,9 @@ CREATE TABLE `photo` (
 --
 
 CREATE TABLE `photo_like` (
-  `photoId` int(11) NOT NULL,
-  `likerId` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `ownerId` int(11) NOT NULL,
+  `photoId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -58,7 +78,8 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
-  `hashcode` varchar(255) NOT NULL
+  `hashcode` varchar(255) NOT NULL,
+  `creationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -69,6 +90,18 @@ CREATE TABLE `user` (
 -- Индексы таблицы `photo`
 --
 ALTER TABLE `photo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `photo_comment`
+--
+ALTER TABLE `photo_comment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `photo_like`
+--
+ALTER TABLE `photo_like`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -88,10 +121,22 @@ ALTER TABLE `photo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT для таблицы `photo_comment`
+--
+ALTER TABLE `photo_comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `photo_like`
+--
+ALTER TABLE `photo_like`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

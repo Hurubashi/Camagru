@@ -29,8 +29,6 @@
 
 <?php
 
-$result = NULL;
-
 if ($_POST) {
     include_once (ROOT . '/models/UserModel.php');
     $userManager = new UserModel;
@@ -52,8 +50,3 @@ if ($_POST) {
         message(error);
     }
 </script>
-
-id
-ownerId
-likes
-likers

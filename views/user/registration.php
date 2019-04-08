@@ -36,12 +36,17 @@ if ($_POST) {
     include (ROOT . '/models/UserModel.php');
     $userManager = new UserModel;
 
-    $is_created = $userManager->register($_POST["username"], $_POST["email"], $_POST["password"]);
-    if ($is_created) {
-        echo "<script> message(\"Congratulations you have sing up successfully!!!<br>Confirmation letter was sent to your email.\"); </script>";
-    } else {
-        echo "Something went wrong :(";
-    }
+    $error = $userManager->register($_POST["username"], $_POST["email"], $_POST["password"]);
 }
 
 ?>
+
+<script>
+    var error = "<?php echo $error ?>";
+
+    if (error) {
+        message(error);
+    } else {
+        message("Success!! <br> Confirmation link was sent to your email")
+    }
+</script>
