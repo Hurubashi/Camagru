@@ -22,6 +22,9 @@ class UserModel extends Model
             }
             $password = crypt($password, '$2a$07$YourSaltIsA22ChrString$');
             if ($password == $user->password) {
+                session_start();
+                $_SESSION['username'] = $user->username;
+                $_SESSION['id'] = $user->id;
                 return NULL;
             } else {
                 return "Wrong password";

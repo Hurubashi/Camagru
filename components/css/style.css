@@ -1,6 +1,7 @@
 html {
     height: 100%;
-    background:url("/components/images/cama.jpg") no-repeat center center fixed;
+    background:url("/components/images/back.jpg") no-repeat center center fixed;
+    /*background-color: #eaeaea;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -12,34 +13,34 @@ body {
     color: #ffffff;
 }
 
-.fill {
-    /*background-image: url('http://source.unsplash.com/random/150x150');*/
-    background-image: url('/components/images/180.jpg');
-    position: relative;
-    height: 150px;
-    width: 150px;
-    top: 5px;
-    left: 5px;
-    cursor: pointer;
+.head {
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 55px;
+    background-color: rgba(40, 65, 80, 1);
+    position: fixed;
+    z-index: 10000;
 }
 
-.empty {
-    display: inline-block;
-    height: 160px;
-    width: 160px;
-    margin: 10px;
-    border: 3px salmon solid;
-    background-color: white;
-}
+/*.btn {*/
+/*    background-color: DodgerBlue; !* Blue background *!*/
+/*    border: none; !* Remove borders *!*/
+/*    color: white; !* White text *!*/
+/*    padding: 12px 16px; !* Some padding *!*/
+/*    font-size: 16px; !* Set a font size *!*/
+/*    cursor: pointer; !* Mouse pointer on hover *!*/
+/*}*/
 
-.hold {
-    border: solid #cccccc 4px;
-}
+/*!* Darker background on mouse-over *!*/
+/*.btn:hover {*/
+/*    background-color: RoyalBlue;*/
+/*}*/
 
-.hovered {
-    border-style: dashed;
-}
-
-.invisible {
-    display: none;
+.divColumn2 {
+    /*-webkit-columns: 100px 3; !* Chrome, Safari, Opera *!*/
+    /*-moz-columns: 100px 3; !* Firefox *!*/
+    width: 100%;
+    columns: 2;
+    column-gap: 40px;
 }

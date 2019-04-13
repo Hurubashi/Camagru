@@ -1,71 +1,42 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['username'], $_SESSION['id'])) {
+    echo 'YOU Need To LOG IN, FUCKER';
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/user/confirmation');
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Camera Page</title>
+    <link rel="stylesheet" href="/components/css/makePhoto.css">
 </head>
 
 <body>
 
-<canvas id="canvas" width="640" height="480"></canvas>
-<video id="video" width="640" height="480" autoplay></video>
-<button id="snap">Snap Photo</button>
-<button id="save">Save Photo</button>
-<p id="response"></p>
+<div class="mainFrame">
+<div class="videoFrame frameSizeClass" id="div" >
+    <video id="video"autoplay></video>
+</div>
+    <div class="actionButton" id="snap"> Make Photo </div>
+    <div class="actionButton" id="clear"> Clear </div>
 
-<script>
+    <?php include_once "slider.php"?>
 
-    // Grab elements, create settings, etc.
-    var video = document.getElementById('video');
+    <div class="photoFrame frameSizeClass" id="canvasDiv">
+        <canvas id="canvas"></canvas>
+    </div>
 
-    // Get access to the camera!
-    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        // Not adding `{ audio: true }` since we only want video now
-        navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-            // video.src = window.URL.createObjectURL(stream);
-            video.srcObject = stream;
-            video.play();
-        });
-    }
-    // Elements for taking the snapshot
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    var video = document.getElementById('video');
-
-    // Trigger photo take
-    document.getElementById("snap").addEventListener("click", function() {
-        context.drawImage(video, 0, 0, 640, 480);
-    });
-
-    document.getElementById("save").addEventListener("click", function() {
-
-        var canvasData = canvas.toDataURL('image/png');
-
-        console.log("save");
-
-        var request = new XMLHttpRequest();
-
-        request.onload = function() {
-            const reponse = document.getElementById("response");
-            reponse.innerHTML = this.responseText;
-            console.log("onload");
-        }
-
-        request.open("POST", 'saveImg');
-        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send("image=" + canvasData);
-
-    });
-
-</script>
+    <div class="actionButton" id="save"> Save Photo </div>
+</div>
 
 
-<?php
-include_once 'dragAndDrop.php';
+<script src="/components/js/photoMaker.js"></script>
 
-//if ($_POST) {
-//
-//}
-?>
 </body>
 
 </html>

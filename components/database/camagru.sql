@@ -34,8 +34,9 @@ USE `camagru`;
 CREATE TABLE `photo` (
   `id` int(11) NOT NULL,
   `ownerId` int(11) NOT NULL,
-  `likes` int(11) NOT NULL,
-  `comments` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `likes` int(11) NOT NULL DEFAULT '0',
+  `comments` int(11) NOT NULL DEFAULT '0',
   `photoURL` char (255) NOT NULL,
   `creationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -50,6 +51,7 @@ CREATE TABLE `photo_comment` (
   `id` int(11) NOT NULL,
   `ownerId` int(11) NOT NULL,
   `photoId` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `text` text NOT NULL,
   `creationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -118,19 +120,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `photo`
 --
 ALTER TABLE `photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `photo_comment`
 --
 ALTER TABLE `photo_comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `photo_like`
 --
 ALTER TABLE `photo_like`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `user`

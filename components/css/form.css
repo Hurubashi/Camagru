@@ -6,6 +6,7 @@
     margin-top: 80px;
     height: 400px;
     text-align: center;
+    font-family: 'Work Sans', sans-serif;
 }
 
 input {
@@ -72,7 +73,6 @@ a:hover {
     text-align: center;
     border-radius: 2px;
     position: fixed;
-    /*z-index: unset;*/
     top: 50px;
     font-size: small;
     padding: 5px 0 5px;

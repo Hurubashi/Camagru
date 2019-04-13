@@ -12,5 +12,6 @@ return array(
     'user/confirmation'     => 'user/confirmation',
     'user/login'            => 'user/login',
     'makePhoto'             => 'PhotoMaker/makePhoto',
-    'saveImg'               => 'PhotoMaker/saveImg'
+    'saveImg'               => 'PhotoMaker/saveImg',
+    'slider'                => 'main/slider'
 );

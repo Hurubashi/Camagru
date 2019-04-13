@@ -3,7 +3,7 @@
 
 <body>
 
-<div class="empty">
+<div class="empty" style="height: 200px; width: 200px; background-color: #ffad57">
     <div class="fill" draggable="true"></div>
 </div>
 <div class="empty"></div>

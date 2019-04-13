@@ -5,8 +5,10 @@
     <title>Not found</title>
 </head>
 <body>
-<img src="/components/images/404_page.png">
 
-<p> Pichal'ka :(</p>
+<div style="margin: auto; width: 500px; height: 500px">
+    <img src="/components/images/404_page.png" style="margin: auto; margin-top: 60px">
+</div>
+
 </body>
 </html>
