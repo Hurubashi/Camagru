@@ -9,7 +9,7 @@
     font-family: 'Work Sans', sans-serif;
 }
 
-input {
+.form input {
     width: 240px;
     text-align: center;
     background: transparent;
@@ -23,7 +23,7 @@ input {
     color: #ffffff;
 }
 
-input[type=submit] {
+.form input[type=submit] {
     border: none;
     width: 190px;
     background: white;
@@ -35,21 +35,21 @@ input[type=submit] {
     cursor: pointer;
 }
 
-input[type=submit]:hover {
+.form input[type=submit]:hover {
     color: #ffffff;
     background-color: black;
 }
 
-h2 {
+.form h2 {
     color: white;
 }
 
-a {
+.form a {
     color: #ffad57;
     text-decoration: blink;
 }
 
-a:hover {
+.form a:hover {
     color: skyblue;
 }
 

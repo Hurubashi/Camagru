@@ -3,11 +3,6 @@
     height: 240px;
 }
 
-.mainFrame {
-    width: 320px;
-    margin: auto;
-}
-
 .photoFrame {
     box-sizing: border-box;
     position: relative;
@@ -33,13 +28,13 @@
     padding: 5px;
     margin-bottom: 2px;
     margin-top: 2px;
-    font-family: 'Work Sans', sans-serif;
     background-color: #1b3643;
+    color: whitesmoke;
+    font-weight: bold;
 }
 
 .actionButton:hover {
-    background-color: #365880;
-    color: whitesmoke;
+    background-color: #ffad57;
 }
 
 video {
@@ -66,9 +61,6 @@ canvas {
         width: 480px;
         height: 360px;
     }
-    .mainFrame {
-        width: 480px;
-    }
     .actionButton {
         padding: 10px;
     }
@@ -78,9 +70,6 @@ canvas {
     .frameSizeClass {
         width: 640px;
         height: 480px;
-    }
-    .mainFrame {
-        width: 640px;
     }
 }
 

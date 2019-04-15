@@ -48,9 +48,9 @@
     display: flex;
 }
 
-.slider__control:hover,
-.slider__control:focus {
+.slider__control:hover{
     color: #fff;
+    background-color: #ffad57;
     text-decoration: none;
     outline: 0;
     opacity: .9;

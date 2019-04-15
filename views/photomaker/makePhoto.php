@@ -1,13 +1,10 @@
 <?php
-session_start();
 
 if (!isset($_SESSION['username'], $_SESSION['id'])) {
-    echo 'YOU Need To LOG IN, FUCKER';
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/user/confirmation');
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/confirmation');
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html>

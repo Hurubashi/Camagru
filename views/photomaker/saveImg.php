@@ -5,7 +5,7 @@
     $imgData = base64_decode($imgData);
 // Path where the image is going to be saved
     $filename = uniqid(rand(), true) . '.png';
-    $filePath = '/components/images/' . $filename;
+    $filePath = '/components/photoLibrary/' . $filename;
 // Write $imgData into the image file
 
     echo "test";

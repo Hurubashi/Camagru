@@ -14,4 +14,8 @@ class UserController extends Controller
         $this->view->generate('/user/confirmation.php', 'templateView.php');
     }
 
+    public function actionLogout() {
+        $this->view->generate('/user/logout.php', 'templateView.php');
+    }
+
 }

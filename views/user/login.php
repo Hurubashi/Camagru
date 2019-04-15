@@ -14,7 +14,7 @@
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
         <br><br>
-        <a href=""><input type="submit" value="Log In" onsubmit="validateForm();"></a><br>
+        <a href=""><input type="submit" value="Log In"></a><br>
         <br>
         <br><br><br><br><br>
         Don't have account? <a href="registration">&nbsp;Sing Up</a>

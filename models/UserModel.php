@@ -52,7 +52,8 @@ class UserModel extends Model
             if ($result) {
                 $confirmationLink = $this->createConfirmationLink($username, $hashcode);
                 $this->send_email($email, $confirmationLink);
-                return NULL;
+                return "Success!! <br> Confirmation link was sent to your email";
+//                return NULL;
             }
         }
         return "Cannot connect to database";
@@ -101,7 +102,7 @@ class UserModel extends Model
 
     private function createConfirmationLink($username, $hashcode) {
         $arr = array('user' => $username, 'confirmation' => $hashcode);
-        return 'http://' . $_SERVER['HTTP_HOST'] . '/user/confirmation?' . http_build_query($arr);
+        return 'http://' . $_SERVER['HTTP_HOST'] . '/confirmation?' . http_build_query($arr);
     }
 
     private function findUserBy($title, $value) {

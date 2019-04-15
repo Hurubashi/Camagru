@@ -7,11 +7,12 @@
  */
 
 return array(
-    'main'                  => 'main/index',
-    'user/registration'     => 'user/registration',
-    'user/confirmation'     => 'user/confirmation',
-    'user/login'            => 'user/login',
-    'makePhoto'             => 'PhotoMaker/makePhoto',
-    'saveImg'               => 'PhotoMaker/saveImg',
-    'slider'                => 'main/slider'
+    'main'          => 'main/index',
+    'registration'  => 'user/registration',
+    'confirmation'  => 'user/confirmation',
+    'login'         => 'user/login',
+    'logout'        => 'user/logout',
+    'makePhoto'     => 'PhotoMaker/makePhoto',
+    'saveImg'       => 'PhotoMaker/saveImg',
+    'slider'        => 'main/slider'
 );

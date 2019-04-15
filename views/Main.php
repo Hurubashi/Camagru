@@ -8,26 +8,67 @@
 <div class="container">
 <?php
 
-$i = 0;
+include_once ROOT . '/models/PostingManager.php';
 
-while ($i < 10) {
-    echo
-    "<div class='photoPost'>
-        <img class='photo' src='/components/images/temp2.png'>
-        <div class='postInfo'>
-            Pic name
+$manager = new PostingManager;
+$posts = $manager->fetchPhotoPosts();
+
+foreach ($posts as $elem) {
+    echo "
+    <div class='photoPost' name='photoPost'>  
+        <div class='postInfo' name='postInfo'>
+        <img class='photo' src='$elem->photoURL'>
+            Posted by $elem->username
+            $elem->creationTime
             <br>
-            01.07.2017
-            <img src='/components/images/like.svg' style='width: 20px; height: 20px;'> 5
-            <img src='/components/images/chat.svg' style='width: 20px; height: 20px;'> 2
+            <button name='like' id='like'>Like $elem->likes</button>            
+            <button name='comment' id='comment'>Comment $elem->comments</button>
         </div>
-    </div>";
-    $i += 1;
+        <form class='comment-form' name='commentForm' id='commentForm' hidden onsubmit='sendMessage();'>
+            <textarea name='message' style='max-width: 300px'></textarea>
+            <button type='submit'>Comment</button>
+        </form>
+    </div>
+    ";
 }
 
-
 ?>
+
 </div>
+
+<script>
+
+    let likes = document.getElementsByName('like'),
+        comments = document.getElementsByName('comment'),
+        commentForms = document.getElementsByName('commentForm');
+
+    var var_i = 0;
+    for (const elem of comments) {
+
+        const const_i = var_i;
+        elem.addEventListener('click', function () {
+            commentForms[const_i].hidden = !commentForms[const_i].hidden;
+        });
+
+        var_i++;
+    }
+
+
+    var_i = 0;
+    for (const elem of likes) {
+
+        const const_i = var_i;
+        elem.addEventListener('click', function () {
+            console.log('like num:', const_i);
+        });
+
+        var_i++;
+    }
+    
+    function sendMessage() {
+        
+    }
+</script>
 
 </body>
 

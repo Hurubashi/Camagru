@@ -11,10 +11,11 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
 // Elements for taking the snapshot
 // ************************************************************
-var video = document.getElementById('video');
-var videoDiv = document.getElementById('div');
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
+var video = document.getElementById('video'),
+    videoDiv = document.getElementById('div'),
+    canvas = document.getElementById('canvas'),
+    context = canvas.getContext('2d');
+
 var photoDone = false;
 
 

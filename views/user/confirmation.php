@@ -27,7 +27,7 @@ if (isset($_GET["user"]) && isset($_GET["confirmation"])) {
         <h2 style="color: white">
             <?php echo $result; ?>
         </h2>
-        <a href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/user/login'?>" style="text-decoration: none" onclick="">Go to Log In page</a>
+        <a href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/login'?>" style="text-decoration: none" onclick="">Go to Log In page</a>
         <br><br>
     </form>
 </div>
