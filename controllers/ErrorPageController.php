@@ -1,9 +1,9 @@
 <?php
 
-class ErrorPageController extends Controller
+class ErrorPageController
 {
     public function actionError404() {
-        $this->view->generate('error404.php', 'templateView.php');
+        include_once ROOT . '/views' . '/error404.php';
         return true;
     }
 

@@ -31,7 +31,7 @@ USE `camagru`;
 -- Структура таблицы `photo`
 --
 
-CREATE TABLE `photo` (
+CREATE TABLE IF NOT EXISTS `photo` (
   `id` int(11) NOT NULL,
   `ownerId` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE `photo` (
 -- Структура таблицы `photo_comment`
 --
 
-CREATE TABLE `photo_comment` (
+CREATE TABLE IF NOT EXISTS `photo_comment` (
   `id` int(11) NOT NULL,
   `ownerId` int(11) NOT NULL,
   `photoId` int(11) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE `photo_comment` (
 -- Структура таблицы `photo_like`
 --
 
-CREATE TABLE `photo_like` (
+CREATE TABLE IF NOT EXISTS `photo_like` (
   `id` int(11) NOT NULL,
   `ownerId` int(11) NOT NULL,
   `photoId` int(11) NOT NULL
@@ -74,7 +74,7 @@ CREATE TABLE `photo_like` (
 -- Структура таблицы `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,

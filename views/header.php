@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/components/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
-</head>
 
 <header class="head">
 
     <div class="mainFrame menu-wrapper">
         <nav class="navbar">
-            <a href="main">Home</a>
+            <a href="home">Home</a>
             <a href="makePhoto">Camera</a>
         </nav>
 
@@ -34,6 +25,4 @@
 
 </header>
 
-<?php include ROOT . '/views/' . $content_view; ?>
 
-</html>

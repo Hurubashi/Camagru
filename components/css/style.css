@@ -68,3 +68,9 @@ body {
         width: 640px;
     }
 }
+
+.orange p{
+    margin: 10px;
+    background-color: aquamarine;
+    color: #ffad57;
+}

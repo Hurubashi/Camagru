@@ -6,10 +6,14 @@ if (!isset($_SESSION['username'], $_SESSION['id'])) {
 
 ?>
 
-<!DOCTYPE html>
 <html>
 <head>
     <title>Camera Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/components/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/components/css/makePhoto.css">
 </head>
 

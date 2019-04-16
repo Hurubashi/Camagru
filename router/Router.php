@@ -15,7 +15,7 @@ class Router
         if (!empty($_SERVER['REQUEST_URI'])) {
             $internalRoute = trim($_SERVER['REQUEST_URI'], '/');
             if ($internalRoute == NULL) {
-                return "main";
+                return "home";
             } else {
                 return $internalRoute;
             }

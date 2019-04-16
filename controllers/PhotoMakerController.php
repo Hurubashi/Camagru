@@ -1,13 +1,20 @@
 <?php
 
 
-class PhotoMakerController extends Controller
+class PhotoMakerController
 {
-    public function actionMakePhoto() {
-        $this->view->generate('/photomaker/makePhoto.php', 'templateView.php');
+    public function actionMain() {
+        include_once ROOT . '/views' . '/photomaker/main.php';
+        return true;
     }
 
     public function actionSaveImg() {
-        $this->view->generate('/photomaker/saveImg.php', 'templateView.php');
+        include_once ROOT . '/views' . '/photomaker/saveImg.php';
+        return true;
+    }
+
+    public function actionSlider() {
+        include_once ROOT . '/views' . '/photomaker/slider.php';
+        return true;
     }
 }

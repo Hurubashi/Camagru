@@ -1,21 +1,25 @@
 <?php
 
-class UserController extends Controller
+class UserController
 {
     public function actionLogin() {
-        $this->view->generate('/user/login.php', 'templateView.php');
+        include_once ROOT . '/views' . '/user/login.php';
+        return true;
     }
 
     public function actionRegistration() {
-        $this->view->generate('/user/registration.php', 'templateView.php');
+        include_once ROOT . '/views' . '/user/registration.php';
+        return true;
     }
 
     public function actionConfirmation() {
-        $this->view->generate('/user/confirmation.php', 'templateView.php');
+        include_once ROOT . '/views' . '/user/confirmation.php';
+        return true;
     }
 
     public function actionLogout() {
-        $this->view->generate('/user/logout.php', 'templateView.php');
+        include_once ROOT . '/views' . '/user/logout.php';
+        return true;
     }
 
 }
