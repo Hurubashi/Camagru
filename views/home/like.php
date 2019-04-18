@@ -1,10 +1,9 @@
 <?php
-
 session_start();
 include_once ROOT . '/models/PhotoPostModel.php';
 
 $manager = new PhotoPostModel;
-$result = $manager->saveComment();
+$result = $manager->like();
 
 if ($result) {
 
@@ -19,7 +18,7 @@ if ($result) {
     echo "</div>";
 
     // Hidden panel that opens with click on commentButton
-    echo "<div class='comment-form' name='commentForm'>";
+    echo "<div class='comment-form' name='commentForm' hidden>";
     // Previous comments
     echo "<div class='old-comments'>";
     $comments = $manager->fetchCommentsById($post->id);

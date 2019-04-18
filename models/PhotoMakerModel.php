@@ -22,11 +22,11 @@ class PhotoMakerModel
 
     private function addToDB($userId, $username, $imagePath) {
         if (Database::pdo_is_connected()) {
-            $sql = "INSERT INTO photo (ownerId, username, photoURL) 
-                    VALUES (:ownerId, :username, :photoURL)";
+            $sql = "INSERT INTO photo (userId, username, photoURL) 
+                    VALUES (:userId, :username, :photoURL)";
             $stmt = Database::$pdo->prepare($sql);
 
-            $stmt->execute(['ownerId' => $userId,
+            $stmt->execute(['userId' => $userId,
                 'username' => $username, 'photoURL' => $imagePath]);
 
         }

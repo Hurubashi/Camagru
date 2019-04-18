@@ -12,4 +12,9 @@ class HomeController
         return true;
     }
 
+    public function actionLike() {
+        include_once ROOT . '/views' . '/home/like.php';
+        return true;
+    }
+
 }

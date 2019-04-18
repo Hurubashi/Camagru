@@ -12,12 +12,6 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- База данных: `camagru`
 --
@@ -32,40 +26,14 @@ USE `camagru`;
 --
 
 CREATE TABLE IF NOT EXISTS `photo` (
-  `id` int(11) NOT NULL,
-  `ownerId` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `likes` int(11) NOT NULL DEFAULT '0',
   `comments` int(11) NOT NULL DEFAULT '0',
   `photoURL` char (255) NOT NULL,
+  PRIMARY KEY (`id`),
   `creationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `photo_comment`
---
-
-CREATE TABLE IF NOT EXISTS `photo_comment` (
-  `id` int(11) NOT NULL,
-  `ownerId` int(11) NOT NULL,
-  `photoId` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `text` text NOT NULL,
-  `creationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `photo_like`
---
-
-CREATE TABLE IF NOT EXISTS `photo_like` (
-  `id` int(11) NOT NULL,
-  `ownerId` int(11) NOT NULL,
-  `photoId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -75,72 +43,48 @@ CREATE TABLE IF NOT EXISTS `photo_like` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
   `hashcode` varchar(255) NOT NULL,
-  `creationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `creationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Индексы сохранённых таблиц
---
+-- --------------------------------------------------------
 
 --
--- Индексы таблицы `photo`
---
-ALTER TABLE `photo`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `photo_comment`
---
-ALTER TABLE `photo_comment`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `photo_like`
---
-ALTER TABLE `photo_like`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT для сохранённых таблиц
+-- Структура таблицы `photo_comment`
 --
 
---
--- AUTO_INCREMENT для таблицы `photo`
---
-ALTER TABLE `photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+CREATE TABLE IF NOT EXISTS `photo_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `photoId` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `text` text NOT NULL,
+  `creationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (userId) REFERENCES user(id),
+  FOREIGN KEY (photoId) REFERENCES photo(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- AUTO_INCREMENT для таблицы `photo_comment`
+-- Структура таблицы `photo_like`
 --
-ALTER TABLE `photo_comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
---
--- AUTO_INCREMENT для таблицы `photo_like`
---
-ALTER TABLE `photo_like`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+CREATE TABLE IF NOT EXISTS `photo_like` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `photoId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (userId) REFERENCES user(id),
+  FOREIGN KEY (photoId) REFERENCES photo(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- AUTO_INCREMENT для таблицы `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-COMMIT;
+-- --------------------------------------------------------
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

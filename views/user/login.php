@@ -10,6 +10,8 @@
     <link href="/components/css/form.css" rel="stylesheet" type="text/css" />
 </head>
 
+<?php include_once (ROOT . '/views/header.php'); ?>
+
 <body class="bodyLogin">
 
 <div class="form">

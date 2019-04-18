@@ -6,6 +6,7 @@
     margin-top: 80px;
     height: 400px;
     text-align: center;
+    color: white;
     font-family: 'Work Sans', sans-serif;
 }
 
@@ -23,7 +24,7 @@
     color: #ffffff;
 }
 
-.form input[type=submit] {
+.form input[type=submit], input[type=button] {
     border: none;
     width: 190px;
     background: white;
@@ -31,11 +32,12 @@
     font-size: 16px;
     line-height: 25px;
     padding: 10px 0;
+    margin: 10px;
     border-radius: 15px;
     cursor: pointer;
 }
 
-.form input[type=submit]:hover {
+.form input[type=submit]:hover, input[type=button]:hover {
     color: #ffffff;
     background-color: black;
 }

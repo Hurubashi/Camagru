@@ -22,4 +22,9 @@ class UserController
         return true;
     }
 
+    public function actionProfile() {
+        include_once ROOT . '/views' . '/user/profile.php';
+        return true;
+    }
+
 }

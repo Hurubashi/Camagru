@@ -11,7 +11,7 @@
             <?php
             session_start();
             if (isset($_SESSION['username'], $_SESSION['id'])) {
-                echo "<a href=\"\">Profile</a>";
+                echo "<a href=\"profile\">Profile</a>";
                 echo "<a href=\"logout\">LogOut</a>";
             } else {
                 echo "

@@ -1,10 +1,3 @@
-<?php
-
-if (!isset($_SESSION['username'], $_SESSION['id'])) {
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/confirmation');
-}
-
-?>
 
 <html>
 <head>
@@ -16,6 +9,16 @@ if (!isset($_SESSION['username'], $_SESSION['id'])) {
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/components/css/makePhoto.css">
 </head>
+
+<?php
+
+include_once (ROOT . '/views/header.php');
+
+if (!isset($_SESSION['username'], $_SESSION['id'])) {
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/confirmation');
+}
+
+?>
 
 <body>
 

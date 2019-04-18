@@ -8,9 +8,9 @@
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
     <link href="/components/css/photoPost.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
 
 <?php include_once (ROOT . '/views/header.php'); ?>
+<body>
 
 <div class="container">
     <?php
@@ -18,27 +18,27 @@
     include_once ROOT . '/models/PhotoPostModel.php';
 
     $manager = new PhotoPostModel;
-    $posts = $manager->fetchPhotoPosts();
+    $posts = $manager->fetchAllPhotoPostsData();
 
-    foreach ($posts as $elem) {
+    foreach ($posts as $post) {
 
         // Photo and its info
-        echo "<div class='photoPost' name='photoPost' id='$elem->id'>";
+        echo "<div class='photoPost' name='photoPost' id='$post->id'>";
             echo "<div class='postInfo' name='postInfo'>";
-                echo "<img class='photo' src='$elem->photoURL'>";
-                echo "Posted by $elem->username";
-                echo "$elem->creationTime<br>";
-                echo "<button name='like'>Like $elem->likes</button> ";
-                $num = $manager->countComments($elem->id);
-                echo "<button name='commentButton' onclick='showHideCommentForm(this)'>Comment $num</button>";
+                echo "<img class='photo' src='$post->photoURL'>";
+                echo "Posted by $post->username ";
+                echo "$post->creationTime<br>";
+                echo "<button name='like' onclick='like(this)'>Like $post->likes</button> ";
+                echo "<button name='commentButton' onclick='showHideCommentForm(this)'>Comment $post->comments</button>";
             echo "</div>";
 
             // Hidden panel that opens with click on commentButton
             echo "<div class='comment-form' name='commentForm' hidden>";
                 // Previous comments
                 echo "<div class='old-comments'>";
-                    $posts = $manager->fetchCommentsById($elem->id);
-                    foreach ($posts as $elem) {
+                    $comments = $manager->fetchCommentsById($post->id);
+                    foreach ($comments as $elem) {
+                        echo "<p style=\"display:inline\">$elem->username </p><p style=\"display:inline\">$elem->creationTime</p>";
                         echo "<p>$elem->text</p><br>";
                     }
                 echo "</div>";
@@ -71,39 +71,41 @@
         request.send(params);
     }
 
+    function like(param) {
+        console.log('liked');
+        let parent = param.parentElement.parentElement;
+        console.log(parent);
+        let data = [];
+        data['photoId'] = parent.id;
+        let callBackFunc = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText != false) {
+                    parent.innerHTML = this.responseText;
+                }
+            }
+        };
+        ajaxRequest(data, 'like', callBackFunc);
+    }
+
     function sendComment(param){
         let parent = param.parentElement.parentElement;
         let form = parent.getElementsByClassName('comment-form');
         let text = form[0].getElementsByTagName('textarea');
+        if (text[0].value == "") {
+            console.log('empty');
+            return;
+        }
         let data = [];
         data['text'] = text[0].value;
         data['photoId'] = parent.id;
         let callBackFunc = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
                 if (this.responseText != false) {
-                    var comments = parent.getElementsByClassName('old-comments');
-                    comments[0].innerHTML = this.responseText;
+                    parent.innerHTML = this.responseText;
                 }
             }
         };
         ajaxRequest(data, 'saveComment', callBackFunc);
-
-
-        /********************************************/
-        let autor = "<?php echo $_SESSION['username'] ?>";
-        let time = new Date();
-
-        var options = {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric'
-        };
-        time = time.toLocaleString("ru", options);
-        createCommentElement(form[0], autor, time,text[0].value);
-        /********************************************/
     }
 
     function showHideCommentForm(param) {
@@ -112,15 +114,6 @@
         form[0].hidden = !form[0].hidden;
     }
 
-    function createCommentElement(parent, autor, time, text) {
-        var btn = document.createElement("div");
-        var p = document.createElement("p");
-        btn.className = 'orange';
-        btn.appendChild(p);
-
-        p.innerHTML = 'autor: ' + autor + 'time: ' + time + 'text: ' + text;
-        parent.appendChild(btn);
-    }
 </script>
 
 

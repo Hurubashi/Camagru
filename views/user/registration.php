@@ -10,7 +10,7 @@
     <link href="/components/css/form.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<?php include_once (ROOT . '/views/header.php'); ?>
 
 <body>
 

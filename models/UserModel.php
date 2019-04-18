@@ -17,7 +17,6 @@ class UserModel
             }
             $password = crypt($password, '$2a$07$YourSaltIsA22ChrString$');
             if ($password == $user->password) {
-                session_start();
                 $_SESSION['username'] = $user->username;
                 $_SESSION['id'] = $user->id;
                 return NULL;
@@ -65,6 +64,14 @@ class UserModel
 
     }
 
+    public function findUserBy($title, $value) {
+        $sql = "SELECT * FROM user WHERE $title = :$title";
+        $stmt = Database::$pdo->prepare($sql);
+        $stmt->execute([$title => $value]);
+        $user = $stmt->fetch();
+        return $user;
+    }
+
     /*----------------------------------------------------------------------------------------------*/
     //************************************** Private functions *************************************//
     /*----------------------------------------------------------------------------------------------*/
@@ -98,14 +105,6 @@ class UserModel
     private function createConfirmationLink($username, $hashcode) {
         $arr = array('user' => $username, 'confirmation' => $hashcode);
         return 'http://' . $_SERVER['HTTP_HOST'] . '/confirmation?' . http_build_query($arr);
-    }
-
-    private function findUserBy($title, $value) {
-        $sql = "SELECT * FROM user WHERE $title = :$title";
-        $stmt = Database::$pdo->prepare($sql);
-        $stmt->execute([$title => $value]);
-        $user = $stmt->fetch();
-        return $user;
     }
 
     private function send_email($address, $link){
