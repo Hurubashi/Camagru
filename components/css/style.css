@@ -16,40 +16,31 @@ body {
     top: 0;
     right: 0;
     left: 0;
+    height: 40px;
     background-color: rgba(0, 0, 0, .5);
     position: fixed;
     z-index: 10000;
 }
 
+.columns {
+    margin-top: 5px;
+    columns: 2;
+}
+
 .navbar {
     color: white;
-    margin: 10px 10px 10px 0;
-
+    font-weight: bold;
 }
 
 .navbar a {
     text-decoration: none;
-    margin: 5px;
     color: white;
+    margin: 10px;
 }
 
 .navbar a:hover {
     text-decoration: none;
     color: #ffad57;
-}
-
-.menu-wrapper {
-    columns: 2 auto;
-    font-weight: bold;
-}
-
-.right-menu {
-    float: right;
-    margin-right: 0;
-}
-
-.left-menu {
-    float: left;
 }
 
 .mainFrame {

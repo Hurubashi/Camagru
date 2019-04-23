@@ -9,7 +9,12 @@ class PhotoMakerController
     }
 
     public function actionSaveImg() {
-        include_once ROOT . '/views' . '/photomaker/saveImg.php';
+        include_once ROOT . '/views' . '/photomaker/ajaxSaveImg.php';
+        return true;
+    }
+
+    public function actionUploadImg() {
+        include_once ROOT . '/views' . '/photomaker/ajaxUploadImg.php';
         return true;
     }
 

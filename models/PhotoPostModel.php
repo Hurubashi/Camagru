@@ -46,9 +46,12 @@ class PhotoPostModel
             $sql = "INSERT INTO photo_comment(userId, photoId, username, text) 
                     VALUES (:userId, :photoId, :username, :text)";
             $stmt = Database::$pdo->prepare($sql);
-            $stmt->execute(['userId' => $_SESSION['id'], 'photoId' => $_POST['photoId'],
-                'username' => $_SESSION['username'], 'text' => $_POST['text']]);
-
+            try {
+                $stmt->execute(['userId' => $_SESSION['id'], 'photoId' => $_POST['photoId'],
+                    'username' => $_SESSION['username'], 'text' => $_POST['text']]);
+            } catch (PDOException $e) {
+                return "Something went wrong";
+            }
             $photo = $this->findRowFromTableByTitle('photo', 'id', $_POST['photoId']);
             $photoOwner = $photo = $this->findRowFromTableByTitle('user', 'id', $photo->userId);
 

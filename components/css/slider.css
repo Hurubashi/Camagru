@@ -10,7 +10,7 @@
 .assetImg {
     display: block;
     margin: auto;
-    margin-top: 5px;
+    /*margin-top: 5px;*/
 
     height: auto;
     max-height: 90%;

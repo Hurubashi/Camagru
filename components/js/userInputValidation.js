@@ -1,14 +1,9 @@
-/*----------------------------------------------------------------------------------------------*/
-// Password validation
 
-let password = document.getElementById("password")
-    , confirm_password = document.getElementById("cPassword");
+/************************************************/
+/*********** Password validation ****************/
+/************************************************/
 
-password.onkeyup = validatePassword;
-confirm_password.onkeyup = validatePassword;
-
-function validatePassword(){
-
+function validatePassword(password, cPassword){
     // Check password pattern
     let regExp = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,15})$/;
     let result = regExp.test(password.value);
@@ -20,19 +15,18 @@ function validatePassword(){
         password.setCustomValidity("");
     }
     // Check if passwords match
-    if(password.value != confirm_password.value) {
-        confirm_password.setCustomValidity("Passwords Don't Match");
+    if(password.value !== cPassword.value) {
+        cPassword.setCustomValidity("Passwords Don't Match");
     } else {
-        confirm_password.setCustomValidity('');
+        cPassword.setCustomValidity('');
     }
 }
 
-/*----------------------------------------------------------------------------------------------*/
-// Email validation
-let email = document.getElementById('email');
-email.onkeyup = validateEmail;
+/************************************************/
+/*********** Email validation *******************/
+/************************************************/
 
-function validateEmail()
+function validateEmail(email)
 {
     let regExp = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     let result = regExp.test(email.value);
@@ -42,4 +36,3 @@ function validateEmail()
         email.setCustomValidity("");
     }
 }
-

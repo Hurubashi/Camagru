@@ -1,0 +1,20 @@
+#msg {
+    visibility: hidden;
+    width: 250px;
+    min-height: 20px;
+    background-color: #ffad57;
+    color: #000000;
+    text-align: center;
+    border-radius: 2px;
+    position: fixed;
+    top: 50px;
+    font-size: small;
+    padding: 5px 0 5px;
+    margin: 10px 10px 10px 0;
+}
+
+#msg.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}

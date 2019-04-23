@@ -15,7 +15,11 @@ return array(
     'login'         => 'user/login',
     'logout'        => 'user/logout',
     'profile'       => 'user/profile',
+    'editProfile'   => 'user/editProfile',
+    'manageLogin'   => 'user/manageLogin',
+    'manageRegistration'   => 'user/manageRegistration',
     'makePhoto'     => 'photoMaker/main',
     'saveImg'       => 'photoMaker/saveImg',
+    'uploadImg'     => 'photoMaker/uploadImg',
     'slider'        => 'photoMaker/slider'
 );

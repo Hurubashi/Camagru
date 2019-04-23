@@ -4,6 +4,6 @@ function message(text) {
     let msg = document.getElementById('msg');
     msg.className = "show";
     setTimeout(function () {
-        msg.className = msg.className.replace("show", "");}, 5000);
+    msg.className = msg.className.replace("show", "");}, 5000);
     msg.innerHTML = text;
 }

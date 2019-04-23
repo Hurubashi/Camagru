@@ -8,18 +8,16 @@
 <div class="slider">
     <div class="slider__wrapper">
         <?php
-        $i = 0;
-        while ($i < 10) {
-
-            echo "
-            <div class=\"slider__item\">
-                    <img class=\"assetImg\" src=\"/components/images/180.jpg\">
-            </div>
-            ";
-            $i++;
+        $path = ROOT . '/components/effects/';
+        $images = glob("$path{*.jpg,*.png}", GLOB_BRACE);
+        foreach($images as $image) {
+            $imagePath = explode('/', $image);
+            $imageName = end($imagePath);
+            echo "<div class=\"slider__item\">";
+            echo        "<img class=\"assetImg\" src=\"/components/effects/$imageName\">";
+            echo "</div>";
         }
         ?>
-
     </div>
     <a class="slider__control slider__control_left" href="#" role="button"></a>
     <a class="slider__control slider__control_right slider__control_show" href="#" role="button"></a>

@@ -26,21 +26,34 @@ if (!isset($_SESSION['username'], $_SESSION['id'])) {
 <div class="videoFrame frameSizeClass" id="div" >
     <video id="video"autoplay></video>
 </div>
+
     <div class="actionButton" id="snap"> Make Photo </div>
     <div class="actionButton" id="clear"> Clear </div>
 
+    <select id="photo-filter">
+        <option value="none">Normal</option>
+        <option value="grayscale(100%)">Grayscale</option>
+        <option value="sepia(100%)">Sepia</option>
+        <option value="invert(100%)">Invert</option>
+        <option value="hue-rotate(90deg)">Hue</option>
+        <option value="blur(10px)">Blur</option>
+        <option value="contrast(200%)">Contrast</option>
+    </select>
+    <input type="file" id="imageLoader" name="imageLoader"/>
+    <button onclick="switchToVideo()">Return Video</button>
+    <canvas id="imageCanvas" hidden></canvas>
     <?php include_once "slider.php"?>
 
     <div class="photoFrame frameSizeClass" id="canvasDiv">
         <canvas id="canvas"></canvas>
     </div>
-
     <div class="actionButton" id="save"> Save Photo </div>
 </div>
 
-
 <script src="/components/js/photoMaker.js"></script>
+<script>
 
+</script>
 </body>
 
 </html>

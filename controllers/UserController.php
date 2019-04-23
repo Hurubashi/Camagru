@@ -27,4 +27,19 @@ class UserController
         return true;
     }
 
+    public function actionEditProfile() {
+        include_once ROOT . '/views' . '/user/ajaxEditProfile.php';
+        return true;
+    }
+
+    public function actionManageLogin() {
+        include_once ROOT . '/views' . '/user/ajaxLogin.php';
+        return true;
+    }
+
+    public function actionManageRegistration() {
+        include_once ROOT . '/views' . '/user/ajaxRegistration.php';
+        return true;
+    }
+
 }

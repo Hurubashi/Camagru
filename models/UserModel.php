@@ -19,7 +19,7 @@ class UserModel
             if ($password == $user->password) {
                 $_SESSION['username'] = $user->username;
                 $_SESSION['id'] = $user->id;
-                return NULL;
+                return "Success";
             } else {
                 return "Wrong password";
             }
@@ -41,13 +41,16 @@ class UserModel
             $stmt= Database::$pdo->prepare($sql);
             $bytes = openssl_random_pseudo_bytes(32);
             $hashcode = bin2hex($bytes);
-            $result = $stmt->execute(['username' => $username, 'email' => $email, 'password' => $password, 'hashcode' => $hashcode]);
-
+            try {
+                $result = $stmt->execute(['username' => $username, 'email' => $email,
+                    'password' => $password, 'hashcode' => $hashcode]);
+            } catch (PDOException $e) {
+                return "Something went wrong";
+            }
             if ($result) {
                 $confirmationLink = $this->createConfirmationLink($username, $hashcode);
                 $this->send_email($email, $confirmationLink);
-                return "Success!! <br> Confirmation link was sent to your email";
-//                return NULL;
+                return "Success";
             }
         }
         return "Cannot connect to database";
@@ -70,6 +73,52 @@ class UserModel
         $stmt->execute([$title => $value]);
         $user = $stmt->fetch();
         return $user;
+    }
+
+    public function changeName($id, $password, $newUsername) {
+        $user = $this->findUserBy('id', $id);
+        $password = crypt($password, '$2a$07$YourSaltIsA22ChrString$');
+        if ($password == $user->password) {
+            if ($this->usernameIsUsed($newUsername)) {
+                return "This username is already taken!";
+            }
+            $sql = 'UPDATE user SET username = :username WHERE id = :id';
+            $stmt = Database::$pdo->prepare($sql);
+            $stmt->execute(['username' => $newUsername, 'id' => $id]);
+            return "Done!";
+        } else {
+            return "Wrong Password";
+        }
+    }
+
+    public function changeEmail($id, $password, $newEmail) {
+        $user = $this->findUserBy('id', $id);
+        $password = crypt($password, '$2a$07$YourSaltIsA22ChrString$');
+        if ($password == $user->password) {
+            if ($this->usernameIsUsed($newEmail)) {
+                return "This email is already taken!";
+            }
+            $sql = 'UPDATE user SET email = :email WHERE id = :id';
+            $stmt = Database::$pdo->prepare($sql);
+            $stmt->execute(['email' => $newEmail, 'id' => $id]);
+            return "Done!";
+        } else {
+            return "Wrong Password";
+        }
+    }
+
+    public function changePassword($id, $password, $newPassword) {
+        $user = $this->findUserBy('id', $id);
+        $password = crypt($password, '$2a$07$YourSaltIsA22ChrString$');
+        if ($password == $user->password) {
+            $sql = 'UPDATE user SET password = :password WHERE id = :id';
+            $stmt = Database::$pdo->prepare($sql);
+            $newPassword = crypt($newPassword, '$2a$07$YourSaltIsA22ChrString$');
+            $stmt->execute(['password' => $newPassword, 'id' => $id]);
+            return "Done!";
+        } else {
+            return "Wrong Password";
+        }
     }
 
     /*----------------------------------------------------------------------------------------------*/

@@ -8,7 +8,7 @@ class HomeController
     }
 
     public function actionSaveComment() {
-        include_once ROOT . '/views' . '/home/saveComment.php';
+        include_once ROOT . '/views' . '/home/ajaxSaveComment.php';
         return true;
     }
 

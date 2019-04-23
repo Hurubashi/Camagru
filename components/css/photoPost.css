@@ -1,28 +1,45 @@
 .container {
-    width: 90%;
-    margin-top: 40px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgba(40, 65, 80, 0.9);
+    /*background-color: rgba(40, 65, 80, 0.9);*/
 }
 
 .photoPost {
+    border: 1px solid #0ac4d0;
     display: block;
-    margin: auto;
+    /*margin: auto;*/
+    background-color: rgba(40, 65, 80, 0.8);
 }
 
 .photo {
     display: block;
     margin: auto;
+
 }
 
 .postInfo {
-    background-color: white;
-    color: black;
-    margin: auto;
-    text-align: center;
+    background-color: rgba(40, 65, 80, 0.8);
+    color: #0ac4d0;
+    /*margin: auto;*/
+    text-align: right;
+
+    /*height: auto;*/
+    /*max-height: 100%;*/
+
+    /*width: auto;*/
+    /*max-width: 100%;*/
+}
+
+.postInfo button{
+    color: #0ac4d0;
+    /*margin: 5px;*/
+    padding: 5px;
+    border-radius: 2px;
 }
 
 .comment-form {
-
+    background-color: rgba(40, 65, 80, 0.8);
+    margin: auto;
+    text-align: right;
 }
